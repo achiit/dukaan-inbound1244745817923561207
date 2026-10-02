@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>श्री विनायक मारुति वर्कशॉप, डिगाव</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--card:#f4f6fa;--pri:#c8102e;--mut:#555;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--fg:#f2f2f2;--card:#1f2227;--mut:#aaa}}
+:root[data-theme="dark"]{--bg:#14161a;--fg:#f2f2f2;--card:#1f2227;--mut:#aaa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,"Noto Sans Devanagari",sans-serif;line-height:1.6}
+header{background:var(--pri);color:#fff;padding:36px 18px;text-align:center}
+h1{margin:0 0 6px;font-size:1.7rem}
+section{max-width:760px;margin:0 auto;padding:24px 18px}
+h2{color:var(--pri);margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.card{background:var(--card);padding:14px;border-radius:12px}
+.btn{display:inline-block;background:#fff;color:var(--pri);padding:12px 22px;border-radius:30px;font-weight:700;text-decoration:none;margin:8px 4px 0;border:0;font-size:1rem}
+.btn.p{background:var(--pri);color:#fff;cursor:pointer}
+input,select{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #888;font-size:1rem;background:var(--bg);color:var(--fg)}
+footer{text-align:center;padding:20px;color:var(--mut)}
+</style>
+</head>
+<body>
+<header>
+<h1>🔧 श्री विनायक मारुति वर्कशॉप</h1>
+<div>डिगाव — आपकी कार की भरोसेमंद देखभाल</div>
+<a class="btn" href="tel:7694901713">📞 कॉल करें: 7694901713</a>
+<a class="btn" href="https://wa.me/917694901713">💬 WhatsApp</a>
+</header>
+
+<section>
+<h2>हमारी सेवाएं</h2>
+<div class="grid">
+<div class="card">🛢️ ऑयल व फ़िल्टर बदलना</div>
+<div class="card">🔩 जनरल सर्विसिंग</div>
+<div class="card">🛑 ब्रेक रिपेयर</div>
+<div class="card">⚙️ इंजन रिपेयर</div>
+<div class="card">🔋 बैटरी व इलेक्ट्रिकल</div>
+<div class="card">❄️ AC सर्विस</div>
+</div>
+</section>
+
+<section>
+<h2>🤖 AI सर्विस रिमाइंडर</h2>
+<p>अपनी कार का नंबर और अभी का किलोमीटर बताइए। अगली सर्विस का समय आने पर हम आपको कॉल/मैसेज करके याद दिलाएंगे।</p>
+<input id="n" placeholder="आपका नाम">
+<input id="ph" type="tel" placeholder="मोबाइल नंबर">
+<input id="car" placeholder="कार का मॉडल व नंबर (जैसे Swift MP09...)">
+<input id="km" type="number" placeholder="अभी कार कितने KM चली है?">
+<select id="gap">
+<option value="5000">हर 5,000 KM पर सर्विस</option>
+<option value="10000">हर 10,000 KM पर सर्विस</option>
+</select>
+<button class="btn p" onclick="send()">रिमाइंडर रजिस्टर करें</button>
+<p id="out"></p>
+</section>
+
+<section>
+<h2>📍 संपर्क</h2>
+<div class="card">
+<b>पवन पाटीदार</b><br>
+श्री विनायक मारुति वर्कशॉप, डिगाव<br>
+📞 <a href="tel:7694901713">7694901713</a>
+</div>
+</section>
+
+<footer>© श्री विनायक मारुति वर्कशॉप, डिगाव</footer>
+
+<script>
+function send(){
+  var n=document.getElementById('n').value.trim(),
+      p=document.getElementById('ph').value.trim(),
+      c=document.getElementById('car').value.trim(),
+      k=parseInt(document.getElementById('km').value,10),
+      g=parseInt(document.getElementById('gap').value,10);
+  if(!n||!p||!c||!k){document.getElementById('out').textContent='कृपया सारी जानकारी भरें।';return;}
+  var next=(Math.floor(k/g)+1)*g;
+  var msg='नमस्ते, मैं '+n+' ('+p+'). कार: '+c+'. अभी KM: '+k+'. अगली सर्विस '+next+' KM पर। कृपया रिमाइंडर में जोड़ें।';
+  document.getElementById('out').textContent='अगली सर्विस: '+next+' KM पर। WhatsApp खुल रहा है…';
+  window.open('https://wa.me/917694901713?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+</body>
+</html>
